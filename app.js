@@ -15,13 +15,13 @@ app.get('/', function(req, res) {
 // {
 //     sender: [{
 //         user: '13307130321@fudan.edu.cn',
-//         pass = '310618'
+//         pass = ''
 //     }, {
 //         user: '13307130321@fudan.edu.cn',
-//         pass = '310618'
+//         pass = ''
 //     }, {
 //         user: '13307130321@fudan.edu.cn',
-//         pass = '310618'
+//         pass = ''
 //     }, ],
 //     mail: {
 //         title: '',
@@ -33,57 +33,6 @@ app.get('/', function(req, res) {
 // }
 
 app.post('/send', function(request, res) {
-    // var request = {}
-    // request.body = {
-    //     sender: [{
-    //         user: '13307130321@fudan.edu.cn',
-    //         pass: '310618'
-    //     }, {
-    //         user: '166666666666@fudan.edu.cn',
-    //         pass: '213414'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }, {
-    //         user: '131242142144@fudan.edu.cn',
-    //         pass: 'gggggg'
-    //     }],
-    //     mail: {
-    //         title: 'test2',
-    //         content: 'test2',
-    //         username: 'test2',
-
-    //     },
-    //     target: ['mail_2015', 'mail_2014']
-    // }
-
     console.log('start!');
     var totalMail = [];
     request.body.target.forEach(function(item) {
