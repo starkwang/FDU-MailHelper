@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="starkAPP">
+
+<head>
+  <title>复旦扫邮助手</title>
+  <script type="text/javascript" src="/static/js/bundle.js"></script>
+</head>
+
+<body ng-view>
+  <div ng-controller="mainController">
+    <table>
+      <tr>
+        <td>邮件标题：</td>
+        <td>
+          <input type="text" ng-model="mail.title">
+        </td>
+      </tr>
+      <tr>
+        <td>邮件内容：</td>
+        <td>
+          <textarea type="text" ng-model="mail.content"></textarea>
+      </tr>
+      <tr>
+        <td>你想使用的发件人名：</td>
+        <td>
+          <input type="text" ng-model="mail.username">
+          </textarea>
+      </tr>
+    </table>
+    <div>
+        <input type="checkbox" ng-model="grade12" ng-change="gradeChange()"> 12级
+        <input type="checkbox" ng-model="grade13" ng-change="gradeChange()"> 13级
+        <input type="checkbox" ng-model="grade14" ng-change="gradeChange()"> 14级
+        <input type="checkbox" ng-model="grade15" ng-change="gradeChange()"> 15级
+    </div>
+
+    <table>
+        <tr ng-repeat="mail in sender">
+            <td>邮箱：<input type="text" ng-model="mail.user"></td>
+            <td>密码：<input type="text" ng-model="mail.pass"></td>
+        </tr>
+    </table>
+    <button ng-click="submit()">确认</button>
+  </div>
+</body>
+
+</html>
