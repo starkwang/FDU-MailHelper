@@ -16,7 +16,7 @@
         </td>
       </tr>
       <tr>
-        <td>邮件内容：</td>
+        <td>邮件内容(HTML格式)：</td>
         <td>
           <textarea type="text" ng-model="mail.content"></textarea>
       </tr>
@@ -36,7 +36,7 @@
 
     <table>
         <tr ng-repeat="mail in sender">
-            <td>邮箱：<input type="text" ng-model="mail.user"></td>
+            <td>发件邮箱：<input type="text" ng-model="mail.user"></td>
             <td>密码：<input type="text" ng-model="mail.pass"></td>
         </tr>
     </table>
