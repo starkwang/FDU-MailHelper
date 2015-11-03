@@ -47,45 +47,53 @@
     <p>邮箱和密码必须填满！！！</p>
     <button ng-click="submitAll()">确认</button>
   </div>
-  <div ng-controller="mainController" class="main">
-    <div class="title">复旦扫邮助手</div>
-    <table class="table">
-      <tr>
-        <td>邮件标题：</td>
-        <td>
-          <input type="text" ng-model="mail.title" required>
-        </td>
-      </tr>
-      <tr>
-        <td>邮件内容(HTML格式)：</td>
-        <td>
-          <textarea type="text" ng-model="mail.content" required></textarea>
-      </tr>
-      <tr>
-        <td>你想使用的发件人名：</td>
-        <td>
-          <input type="text" ng-model="mail.username" required>
-      </tr>
-      <tr>
-        <td>发件邮箱：</td>
-        <td>
-          <input type="text" ng-model="singleSender.user" required>
-        </td>
-      </tr>
-      <tr>
-        <td>发件邮箱密码：</td>
-        <td>
-          <input type="text" ng-model="singleSender.pass" required>
-        </td>
-      </tr>
-      <tr>
-        <td>收件邮箱：</td>
-        <td>
-          <select ng-options="item.subItem as item.label for item in values track by item.id" ng-model="selected">
-        </td>
-      </tr>
-    </table>
-    <button ng-click="submit()">确认</button>
+  <div class="view" ng-controller="mainController">
+    <div class="main">
+      <div class="title">复旦扫邮助手</div>
+      <table class="table">
+        <tr>
+          <td>邮件标题：</td>
+          <td>
+            <input type="text" ng-model="mail.title" required>
+          </td>
+        </tr>
+        <tr>
+          <td>邮件内容(HTML格式)：</td>
+          <td>
+            <textarea type="text" ng-model="mail.content" required></textarea>
+        </tr>
+        <tr>
+          <td>你想使用的发件人名：</td>
+          <td>
+            <input type="text" ng-model="mail.username" required>
+        </tr>
+        <tr>
+          <td>发件邮箱：</td>
+          <td>
+            <input type="text" ng-model="singleSender.user" required>
+          </td>
+        </tr>
+        <tr>
+          <td>发件邮箱密码：</td>
+          <td>
+            <input type="text" ng-model="singleSender.pass" required>
+          </td>
+        </tr>
+        <tr>
+          <td>收件邮箱：</td>
+          <td>
+            <select ng-options="item.subItem as item.label for item in values track by item.id" ng-model="selected">
+          </td>
+        </tr>
+      </table>
+      <button ng-click="submit()">确认</button>
+    </div>
+    <div class="loader" ng-show="loader">
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+    </div>
   </div>
 </body>
 

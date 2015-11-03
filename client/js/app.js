@@ -235,8 +235,10 @@ app.controller('mainController', ['$scope', 'BaseService', '$http',
                 mail: $scope.mail,
                 target: $scope.selected.target
             }
+            $scope.loader = true;
             $http.post('/send', params).
             success(function(data) {
+                $scope.loader = false;
                 if(data.success){
                     alert('发送成功！');
                 }else{
@@ -244,6 +246,7 @@ app.controller('mainController', ['$scope', 'BaseService', '$http',
                 }
             }).
             error(function(data) {
+                $scope.loader = false;
                 alert('error!');
             });
         }
