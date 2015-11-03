@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 //     target: ['mail_2015', 'mail_2014']
 // }
 
-app.post('/send', function(request, res) {
+app.post('/sendAll', function(request, res) {
     console.log('start!');
     var totalMail = [];
     request.body.target.forEach(function(item) {
@@ -93,6 +93,77 @@ app.post('/send', function(request, res) {
 });
 
 
+// {
+//     sender: {
+//         user: '',
+//         pass: ''
+//     },
+//     mail: {
+//         title: '',
+//         content: '',
+//         username: ''
+//     },
+//     target: [
+//         'mail_2015', 0
+//     ]
+// }
+
+
+
+app.post('/send', function(req, res) {
+    var user = req.body.sender.user,
+        pass = req.body.sender.pass;
+    var smtpTransport = nodemailer.createTransport({
+        host: "mail.fudan.edu.cn",
+        auth: {
+            user: user,
+            pass: pass
+        }
+    });
+    console.log(req.body);
+    var mail = mail_data[req.body.target[0]];
+    var split = req.body.target[1]
+    var target = mail.slice(split * 500, (split + 1) * 500);
+    for (var i = 0; i < 5; i++) {
+        console.log('<----mail---->');
+        console.log('from:' + req.body.mail.username + '<' + user + '>');
+        console.log('to' + target.slice(i * 100, (i + 1) * 100).length);
+        console.log('</----mail----/>');
+
+        var conter = 0;
+        var portion = Math.ceil(target.length / 100);
+        var handled = 0;
+        var targetStr = target.slice(i * 100, (i + 1) * 100).join(',');
+        if (targetStr.length > 0) {
+            smtpTransport.sendMail({
+                from: req.body.mail.username + '<' + user + '>',
+                to: targetStr,
+                subject: req.body.mail.title,
+                html: req.body.mail.content
+            }, function(error, result) {
+                console.log(error, result);
+                handled++;
+                if (result) {
+                    conter++;
+                }
+                if (conter == portion) {
+                    res.send({
+                        success: true
+                    });
+                }
+                if(handled == portion && conter!=portion){
+                    res.send({
+                        success: false
+                    });
+                }
+
+                
+            });
+        }
+    }
+
+})
+
 app.listen(3000);
 console.log('server start at 3000');
 
@@ -106,7 +177,7 @@ function sendMail(auth, mail, targetString, callback) {
     var targetMail = targetString.split(',');
     var total = targetMail.length;
 
-    var portion = Math.ceil(total/100);
+    var portion = Math.ceil(total / 100);
     console.log(portion);
     var handled = 0;
     for (var i = 0; i * 100 < total; i++) {
@@ -118,7 +189,7 @@ function sendMail(auth, mail, targetString, callback) {
             html: mail.content
         }, function(error, result) {
             handled++
-            if(handled == portion){
+            if (handled == portion) {
                 callback(error, result);
             }
         });

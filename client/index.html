@@ -4,10 +4,11 @@
 <head>
   <title>复旦扫邮助手</title>
   <script type="text/javascript" src="/static/js/bundle.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 
 <body ng-view>
-  <div ng-controller="mainController">
+  <div style="display:none">
     <table>
       <tr>
         <td>邮件标题：</td>
@@ -28,20 +29,62 @@
       </tr>
     </table>
     <div>
-        <input type="checkbox" ng-model="grade12" ng-change="gradeChange()"> 12级
-        <input type="checkbox" ng-model="grade13" ng-change="gradeChange()"> 13级
-        <input type="checkbox" ng-model="grade14" ng-change="gradeChange()"> 14级
-        <input type="checkbox" ng-model="grade15" ng-change="gradeChange()"> 15级
+      <input type="checkbox" ng-model="grade12" ng-change="gradeChange()"> 12级
+      <input type="checkbox" ng-model="grade13" ng-change="gradeChange()"> 13级
+      <input type="checkbox" ng-model="grade14" ng-change="gradeChange()"> 14级
+      <input type="checkbox" ng-model="grade15" ng-change="gradeChange()"> 15级
     </div>
-
     <table>
-        <tr ng-repeat="mail in sender">
-            <td>发件邮箱：<input type="text" ng-model="mail.user"></td>
-            <td>密码：<input type="text" ng-model="mail.pass"></td>
-        </tr>
+      <tr ng-repeat="mail in sender">
+        <td>发件邮箱：
+          <input type="text" ng-model="mail.user">
+        </td>
+        <td>密码：
+          <input type="text" ng-model="mail.pass">
+        </td>
+      </tr>
     </table>
-
     <p>邮箱和密码必须填满！！！</p>
+    <button ng-click="submitAll()">确认</button>
+  </div>
+  <div ng-controller="mainController" class="main">
+    <div class="title">复旦扫邮助手</div>
+    <table class="table">
+      <tr>
+        <td>邮件标题：</td>
+        <td>
+          <input type="text" ng-model="mail.title" required>
+        </td>
+      </tr>
+      <tr>
+        <td>邮件内容(HTML格式)：</td>
+        <td>
+          <textarea type="text" ng-model="mail.content" required></textarea>
+      </tr>
+      <tr>
+        <td>你想使用的发件人名：</td>
+        <td>
+          <input type="text" ng-model="mail.username" required>
+      </tr>
+      <tr>
+        <td>发件邮箱：</td>
+        <td>
+          <input type="text" ng-model="singleSender.user" required>
+        </td>
+      </tr>
+      <tr>
+        <td>发件邮箱密码：</td>
+        <td>
+          <input type="text" ng-model="singleSender.pass" required>
+        </td>
+      </tr>
+      <tr>
+        <td>收件邮箱：</td>
+        <td>
+          <select ng-options="item.subItem as item.label for item in values track by item.id" ng-model="selected">
+        </td>
+      </tr>
+    </table>
     <button ng-click="submit()">确认</button>
   </div>
 </body>
